@@ -32,7 +32,7 @@ puts ""
 puts "Now sorting alphabeticaly"
 puts ""
 
-$data.sort! {|x,y| x[0] <=> y[0]} #this rearranges the array based on the elements 0th position. since this position stores the name its alphabeticaly sorted.
+$data.sort_by! {|obj| obj[0]} #this rearranges the array based on the elements 0th position. since this position stores the name its alphabeticaly sorted.
 $data.each do |i|                 #for all the items in the data array it will show all the information about that team
   puts "team " + i[0].to_s + " won " + i[1].to_s + " games. That means their rank is " + i[2].to_s
 end
@@ -41,7 +41,7 @@ puts ""
 puts "Now sorting by highest rank"
 puts ""
 
-$data.sort! {|x,y| x[2] <=> y[2]} #this rearranges the array based on the elements 2nd position. since this position stores the teams "rank" it is sorted by rank
+$data.sort_by! {|obj| obj[2]} #this rearranges the array based on the elements 2nd position. since this position stores the teams "rank" it is sorted by rank
 $data.reverse!                    #by default it sorts least to greatest but we want gretest to least so i just reverse the array.
 $data.each do |i|                 #for all the items in the data array it will show all the information about that team
 puts "team " + i[0].to_s + " won " + i[1].to_s + " games. That means their rank is " + i[2].to_s
