@@ -88,7 +88,11 @@ class App
       when "0"
         Test.build(Test.newTest())
       when "1"
-        Test.viewTest(Test.parseTest(Test.pickTest(@user.name), @user.name))
+        if Dir.children("Tests/").count < 1
+          puts "You have no tests"
+        else
+          Test.viewTest(Test.parseTest(Test.pickTest(@user.name), @user.name))
+        end
       when "2"
         logout()
         return
@@ -154,14 +158,24 @@ class Test
   end
 
   def self.build(test)
-    puts ""
-    puts "test currently has " + test.questions.count.to_s + " questions"
-    print "add a new question? (yes or no)"
-    option = gets.chomp.downcase
-    until option == "yes" || option == "no"
-      puts "must be yes or no"
+
+    if test.questions.count.to_s == "0"
+      puts ""
+      puts "Adding first question..."
+      
+      option = "yes"
+    else
+      puts ""
+      puts "test currently has " + test.questions.count.to_s + " questions"
+      print "add a new question? (yes or no)"
+
       option = gets.chomp.downcase
+      until option == "yes" || option == "no"
+        puts "must be yes or no"
+        option = gets.chomp.downcase
+      end
     end
+
     case option
     when "yes"
       question = Question.new()
@@ -306,6 +320,11 @@ class Test
     puts ""
     print "name of test:"
     name = gets.chomp
+    until name != ""
+      puts "must have a name"
+      print "name of test:"
+      name = gets.chomp
+    end
 
     tests = Dir.children("Tests/")
     if tests.include?(name)
