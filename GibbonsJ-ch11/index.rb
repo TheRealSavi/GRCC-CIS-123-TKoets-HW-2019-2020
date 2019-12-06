@@ -14,7 +14,7 @@ def mainMenu()
   puts "(0) Make a new user or (1) Login to a user"
   print "Action: "
   action = gets.chomp
-  
+
   puts ""
   case action
   when "0"
@@ -26,7 +26,8 @@ def mainMenu()
 
     type = ""
     until type.downcase == "student" || type.downcase == "admin"
-    print "Account Type: "
+    puts "Account Type: "
+    print "admin or student: "
     type = gets.chomp
     end
 
