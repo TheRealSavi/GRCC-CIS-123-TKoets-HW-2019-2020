@@ -65,10 +65,16 @@ class Test
       testData = File.new('Tests/' + @name + '/' + @name + '.szi', 'w+')
       @questions.each do |q|
         testData.print(q.question.to_s + "-")
+
         testData.print(q.type.to_s + "-")
-        temp = q.options.to_s
-        testData.print(temp[1..temp.length-2] + "-")
-        testData.print(q.answer.to_s + "-")
+
+        q.options.each do |option|
+          testData.print(option.chomp + ",")
+        end
+        testData.print("-")
+
+        testData.print(q.answer.to_s)
+        
         testData.print(";")
       end
       testData.close
@@ -138,7 +144,8 @@ class Test
 
     testQuestions.each do |question|
       questionInfo = question.split("-")
-      finalQuestions.push(TestQuestion.new(questionInfo[0],questionInfo[1],questionInfo[2].split(","),questionInfo[3]))
+      questionOptions = questionInfo[2].split(",")
+      finalQuestions.push(TestQuestion.new(questionInfo[0],questionInfo[1],questionOptions,questionInfo[3]))
     end #Done building test
     parsedTest = Test.new(test, finalQuestions)
     return parsedTest

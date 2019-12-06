@@ -72,7 +72,7 @@ def dashboard(user)
   puts "Welcome to the " + user.type + " dashboard!"
   case user.type
   when "admin"
-    puts "(0) New Test or (1) View Test or (2) Logout"
+    puts "(0) New Test or (1) View Test or (2) Add To Test or (3) Logout"
     print "Action: "
     action = gets.chomp
     case action
@@ -82,6 +82,9 @@ def dashboard(user)
       test = Test.picker()
       test.view()
     when "2"
+      test = Test.picker()
+      test.build()
+    when "3"
       user.logout()
       mainMenu()
     end
