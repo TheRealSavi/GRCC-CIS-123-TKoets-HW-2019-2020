@@ -34,9 +34,6 @@ class User
     if userinfo[1] == @password
       @type = userinfo[2].chomp
       @isLoggedIn = true
-      puts ""
-      puts "   ^^^   logged into " + userinfo[0] + "   ^^^   "
-      puts ""
       return true
     else
       return false
@@ -52,6 +49,7 @@ class User
   end
 
   def takeTest(test)
+    clearScreen()
     puts ""
     if @isLoggedIn == false
       puts "Error: User is not logged in, can not take test"
@@ -63,6 +61,7 @@ class User
 
     score = 0
     test.questions.each do |question|
+      clearScreen()
       puts ""
       puts question.question
 
@@ -120,6 +119,7 @@ class User
 
     end
 
+    clearScreen()
     puts ""
     puts "Final score is " + score.to_s + "/" + test.questions.count.to_s
     percentage = ((score.to_f/test.questions.count.to_f) * 100).round(2)
@@ -128,9 +128,15 @@ class User
     scorefile = File.new('Users/' + @username + "/scores/" + test.name.to_s + ".szi", 'w+')
     scorefile.puts "Your final score was " +  percentage.to_s + "%, Good job!"
     scorefile.close
+
+    puts ""
+    puts "Press return to continue..."
+    gets
+
   end
 
   def viewScore(test)
+    clearScreen()
     puts ""
     if @isLoggedIn == false
       puts "Error: User is not logged in, can not view scores"
@@ -144,6 +150,9 @@ class User
     rescue
       puts "No score for this test yet."
     end
+    puts ""
+    puts "Press return to continue..."
+    gets
   end
 
 end

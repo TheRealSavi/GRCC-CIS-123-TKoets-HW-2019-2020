@@ -18,11 +18,11 @@ class MCquestion < Question
     puts ""
     print "A: "
     @options.push(gets.chomp)
-    print "B:"
+    print "B: "
     @options.push(gets.chomp)
-    print "C:"
+    print "C: "
     @options.push(gets.chomp)
-    print "D:"
+    print "D: "
     @options.push(gets.chomp)
     puts "Which one is correct (A)(B)(C)(D)"
     print "Answer: "

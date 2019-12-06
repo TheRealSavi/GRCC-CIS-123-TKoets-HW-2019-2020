@@ -8,6 +8,7 @@ class Test
   end
 
   def self.newTest()
+    clearScreen()
     puts ""
     puts "Welcome to the test builder module"
 
@@ -35,6 +36,7 @@ class Test
   end
 
   def build()
+    clearScreen()
     puts ""
     puts "Building on test: " + @name
     puts "There are " + @questions.count.to_s + " questions in this test"
@@ -101,6 +103,7 @@ class Test
   end
 
   def self.picker()
+    clearScreen()
     puts ""
     tests = Dir.children('Tests/')
     puts "Choose a test:"
@@ -142,6 +145,7 @@ class Test
   end
 
   def view()
+    clearScreen()
     puts ""
     puts "Viewing test: " + @name
 
@@ -159,5 +163,9 @@ class Test
       end
       puts "answer: " + question.answer
     end
+    puts ""
+    puts "Press return to continue..."
+    gets
   end
+
 end

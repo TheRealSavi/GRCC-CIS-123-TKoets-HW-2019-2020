@@ -2,11 +2,19 @@ require_relative 'src/User.rb'
 require_relative 'src/Test.rb'
 require_relative 'src/Question.rb'
 
+def clearScreen()
+  sleep(0.75)
+  #attempts to call clear for terminal, if it fails, attempts to call cls for windows command line
+  system("clear") || system("cls")
+end
+
 def mainMenu()
+  clearScreen()
   puts ""
   puts "(0) Make a new user or (1) Login to a user"
   print "Action: "
   action = gets.chomp
+  
   puts ""
   case action
   when "0"
@@ -46,9 +54,10 @@ def mainMenu()
     if status == false
       puts ""
       puts "Wrong user info"
-      puts ""
       mainMenu()
     else
+      puts ""
+      puts "Logged into: " + user.username
       dashboard(user)
     end
   else
@@ -57,6 +66,7 @@ def mainMenu()
 end
 
 def dashboard(user)
+  clearScreen()
   puts ""
   puts "Welcome to the " + user.type + " dashboard!"
   case user.type
