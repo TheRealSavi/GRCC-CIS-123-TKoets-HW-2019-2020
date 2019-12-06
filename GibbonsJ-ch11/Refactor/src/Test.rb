@@ -47,11 +47,11 @@ class Test
       action = "yes"
     end
 
-    until action.downcase == "yes" || action.downcase == "no"
+    until action == "yes" || action == "no"
       puts ""
       puts "Would you like to add another question?"
       print "Yes or no: "
-      action = gets.chomp
+      action = gets.chomp.downcase
     end
 
     case action
